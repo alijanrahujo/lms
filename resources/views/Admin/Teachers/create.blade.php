@@ -13,7 +13,7 @@
                   <h5>Register New Teacher</h5>
                 </div>
                 <div class="card-body">
-                 
+                   
                   <form class="form-sample" action="{{route('teachers.store')}}" method="POST" enctype="multipart/form-data" >
                     @csrf
 
@@ -26,7 +26,12 @@
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Name</label>
                           <div class="col-sm-9">
-                            <input type="text" class="form-control" name="teacher_name">
+                            <input type="text" class="form-control" name="teacher_name" value="{{old('teacher_name')}}">
+                            @if($errors->has('teacher_name'))
+                              @foreach($errors->get('teacher_name') as $error)
+                                <p style="color: red;">{{$error}}</p>
+                              @endforeach
+                            @endif
                           </div>
                         </div>
                       </div>
@@ -34,7 +39,13 @@
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Education</label>
                           <div class="col-sm-9">
-                            <input type="text" class="form-control" name="education">
+                            <input type="text" class="form-control" name="education" 
+                            value="{{old('education')}}">
+                            @if($errors->has('education'))
+                              @foreach($errors->get('education') as $error)
+                                <p style="color: red;">{{$error}}</p>
+                              @endforeach
+                            @endif
                           </div>
                         </div>
                       </div>
@@ -46,9 +57,15 @@
                           <label class="col-sm-3 col-form-label">Gender</label>
                           <div class="col-sm-9">
                             <select class="form-control" name="gender">
+                              <option value="">Select Gender</option>
                               <option value="Male">Male</option>
                               <option value="Female">Female</option>
                             </select>
+                            @if($errors->has('gender'))
+                              @foreach($errors->get('gender') as $error)
+                                <p style="color: red;">{{$error}}</p>
+                              @endforeach
+                            @endif
                           </div>
                         </div>
                       </div>
@@ -56,7 +73,12 @@
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Date of Birth</label>
                           <div class="col-sm-9">
-                            <input type="Date" class="form-control" placeholder="dd/mm/yyyy" name="dob">
+                            <input type="Date" class="form-control" placeholder="dd/mm/yyyy" name="dob" value="{{old('dob')}}">
+                            @if($errors->has('dob'))
+                              @foreach($errors->get('dob') as $error)
+                                <p style="color: red;">{{$error}}</p>
+                              @endforeach
+                            @endif
                           </div>
                         </div>
                       </div>
@@ -67,7 +89,13 @@
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Address</label>
                           <div class="col-sm-9">
-                            <input type="text" class="form-control" name="address">
+                            <input type="text" class="form-control" name="address" 
+                            value="{{old('address')}}">
+                            @if($errors->has('address'))
+                              @foreach($errors->get('address') as $error)
+                                <p style="color: red;">{{$error}}</p>
+                              @endforeach
+                            @endif
                           </div>
                         </div>
                       </div>
@@ -75,7 +103,8 @@
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Email</label>
                           <div class="col-sm-9">
-                            <input type="text" class="form-control" name="email">
+                            <input type="text" class="form-control" name="email" 
+                            value="{{old('email')}}">
                           </div>
                         </div>
                       </div>
@@ -86,7 +115,13 @@
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Mobile </label>
                           <div class="col-sm-9">
-                            <input type="text" class="form-control" name="mobile">
+                            <input type="text" class="form-control" name="mobile" 
+                            value="{{old('mobile')}}">
+                            @if($errors->has('mobile'))
+                              @foreach($errors->get('mobile') as $error)
+                                <p style="color: red;">{{$error}}</p>
+                              @endforeach
+                            @endif
                           </div>
                         </div>
                       </div>
@@ -94,7 +129,7 @@
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Upload Pic</label>
                           <div class="col-sm-9">
-                            <input type="file" class="form-control" name="pic">
+                            <input type="file" class="form-control" name="pic" value="{{old('pic')}}">
                           </div>
                         </div>
                       </div>
@@ -105,7 +140,8 @@
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Employee ID</label>
                           <div class="col-sm-9">
-                            <input type="text" class="form-control" name="emp_id">
+                            <input type="text" class="form-control" name="emp_id" 
+                            value="{{old('emp_id')}}">
                           </div>
                         </div>
                       </div>

@@ -4,6 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Section;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StoreSectionRequest;
+use App\Models\Scl_Class;
+use App\Models\Teacher;
 
 class SectionController extends Controller
 {
@@ -14,7 +19,10 @@ class SectionController extends Controller
      */
     public function index()
     {
-        //
+        $user= Auth::user()->id;
+        $Sections=Section::where('scl_id',$user)->get();
+
+        return view('Admin.Sections.index', compact('Sections'));
     }
 
     /**
@@ -24,7 +32,10 @@ class SectionController extends Controller
      */
     public function create()
     {
-        //
+        $user= Auth::user()->id;
+        $Teachers=Teacher::where('scl_id',$user)->get();
+        $Classes=Scl_Class::where('scl_id',$user)->get();
+         return view('Admin.Sections.create', compact('Teachers', 'Classes'));
     }
 
     /**
@@ -33,9 +44,22 @@ class SectionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreSectionRequest $request)
     {
         //
+         $Section=new Section;
+
+         $user=Auth::user()->id;
+
+        $Section->section_name=$request->section_name;
+        $Section->category=$request->category;
+        $Section->teacher_id=$request->teacher;
+        $Section->scl_class_id=$request->class;
+        $Section->scl_id=$user;
+
+        $Section->save();
+
+        return redirect('sections');
     }
 
     /**
@@ -57,7 +81,13 @@ class SectionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user= Auth::user()->id;
+        $Teachers=Teacher::where('scl_id',$user)->get();
+        $Classes=Scl_Class::where('scl_id',$user)->get();
+        $Sections=Section::where('id',$id)->first();
+
+        return view('Admin.Sections.edit', compact('Teachers', 'Classes', 'Sections'));
+
     }
 
     /**
@@ -69,7 +99,16 @@ class SectionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $Section= Section::find($id)
+        ->update([
+            'section_name'=>$request->section_name,
+            'category'=>$request->category,
+            'teacher'=>$request->teacher,
+            'class_name'=>$request->class
+        ]);
+
+        return redirect('sections');
+
     }
 
     /**

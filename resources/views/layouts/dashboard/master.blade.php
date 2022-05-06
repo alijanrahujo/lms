@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="{{asset('vendors/iconfonts/simple-line-icon/css/simple-line-icons.css')}}">
   <link rel="stylesheet" href="{{asset('vendors/css/vendor.bundle.base.css')}}">
   <link rel="stylesheet" href="{{asset('vendors/css/vendor.bundle.addons.css')}}">
+  <link rel="stylesheet" href="{{asset('vendors/iconfonts/font-awesome/css/font-awesome.min.css')}}" />
   <!-- endinject -->
   <!-- plugin css for this page -->
   <!-- End plugin css for this page -->
@@ -19,6 +20,7 @@
   <link rel="stylesheet" href="{{asset('css/style.css')}}">
   <!-- endinject -->
   <link rel="shortcut icon" href="{{asset('images/favicon.png')}}" />
+  <script src="{{asset('js/jquery.js')}}"></script>
 </head>
 
 <body>
@@ -89,6 +91,7 @@
   <!-- Custom js for this page-->
   <script src="{{asset('js/dashboard.js')}}"></script>
   <script src="{{asset('js/data-table.js')}}"></script>
+  
   <!-- End custom js for this page-->
 </body>
 

@@ -37,6 +37,9 @@
                           <label class="badge badge-info">{{$institute->status}}</label>
                         </td>
                         <td>
+                          <a class="btn btn-outline-success" href="{{route('institutes.edit',$institute->id)}}">Edit</a>
+                          <a class="btn btn-outline-danger" href="">Delete</a>
+
                           <button class="btn btn-outline-primary">View</button>
                         </td>
                   @endforeach      

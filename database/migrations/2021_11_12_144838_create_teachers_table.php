@@ -20,10 +20,10 @@ class CreateTeachersTable extends Migration
             $table->string('gender');
             $table->string('dob');
             $table->string('address');
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->bigInteger('mobile');
-            $table->string('pic');
-            $table->string('emp_id');
+            $table->string('pic')->nullable();
+            $table->string('emp_id')->nullable();
             $table->string('status');
             $table->bigInteger('scl_id');
         

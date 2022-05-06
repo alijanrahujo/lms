@@ -18,7 +18,7 @@ class CreateFathersTable extends Migration
             $table->string('parent_name');
             $table->string('address');
             $table->bigInteger('mobile');
-            $table->string('pic');
+            $table->string('pic')->nullable();
             $table->bigInteger('scl_id');
          
         });

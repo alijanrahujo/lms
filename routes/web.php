@@ -8,8 +8,17 @@ use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\Admin\ClassController;
 use App\Http\Controllers\Admin\SubjectController;
 use App\Http\Controllers\Admin\SectionController;
-use App\Http\Controllers\Admin\ParentController;
+use App\Http\Controllers\Admin\FatherController;
 use App\Http\Controllers\Admin\StudentController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\PermissionsController;
+use App\Http\Controllers\Admin\FeeTypeController;
+use App\Http\Controllers\Admin\InvoiceController;
+use App\Http\Controllers\Online_testing\CandidatesController;
+use App\Http\Controllers\Admin\AttendenceController;
+use App\Http\Controllers\Pseb\InterneesController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,6 +38,12 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+Route::group(['middleware' => ['auth']], function() {
+    Route::resource('roles', RoleController::class);
+    Route::resource('users', UserController::class);
+    Route::resource('permissions', PermissionsController::class);
+});
+
 //Main Dashboard
 //Route::get('/',[DashboardController::class,'index'])->name('dashboard');
 
@@ -38,6 +53,7 @@ Route::get('/create_institute',[DashboardController::class,'create'])->name('cre
 
 //Supper Admin Institutes
 Route::resource('institutes',InstituteController::class);
+Auth::routes();
 
 //Admin Teachers
 Route::resource('teachers',TeacherController::class);
@@ -54,7 +70,31 @@ Route::resource('subjects',SubjectController::class);
 Route::resource('sections',SectionController::class);
 
 //Admin Parents
-Route::resource('parents',ParentController::class);
+Route::resource('fathers',FatherController::class);
 
 //Admin Students
 Route::resource('students',StudentController::class);
+
+//Admin Account
+Route::resource('fee_type',FeeTypeController::class);
+Route::resource('invoice',InvoiceController::class);
+Route::get('class_ajax/{id}',[InvoiceController::class,'class_ajax'])->name('class_ajax');
+Route::get('session_ajax/{id}',[InvoiceController::class,'session_ajax'])->name('session_ajax');
+
+Route::post('invoice_ajax/{id}',[InvoiceController::class,'invoice_ajax'])->name('invoice_ajax');
+
+
+//Online Testing
+Route::resource('candidates',CandidatesController::class);
+
+//PSEB 
+Route::resource('internees',InterneesController::class);
+
+//Attendence 
+Route::resource('attendence',AttendenceController::class);
+Route::post('record',[AttendenceController::class, 'record'])->name('record');
+
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('/class_ajax1',[AttendenceController::class, 'class_ajax1']);
+

@@ -1,10 +1,10 @@
  <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
         <a class="navbar-brand brand-logo" href="index.html">
-          <img src="images/logo.svg" alt="logo" />
+          <img src="{{asset('images/logo.svg')}}" />
         </a>
         <a class="navbar-brand brand-logo-mini" href="index.html">
-          <img src="images/logo-mini.svg" alt="logo" />
+          <img src="{{asset('images/logo-mini.svg')}}"  />
         </a>
       </div>
 
@@ -23,7 +23,7 @@
             <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
               <div class="dropdown-toggle-wrapper">
                 <div class="inner">
-                  <img class="img-xs rounded-circle" src="images/faces/face1.jpg" alt="Profile image">
+                  <img class="img-xs rounded-circle" src="{{asset('images/faces/face1.jpg')}}" >
                 </div>
                 <div class="inner">
                   <div class="inner">

@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Scl_Class;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StoreClassRequest;
 
 class ClassController extends Controller
 {
@@ -14,7 +17,9 @@ class ClassController extends Controller
      */
     public function index()
     {
-        //
+        $user= Auth::user()->id;
+        $Classes=Scl_Class::where('scl_id',$user)->get();
+        return view('Admin.Classes.index', compact('Classes'));
     }
 
     /**
@@ -25,6 +30,8 @@ class ClassController extends Controller
     public function create()
     {
         //
+
+         
     }
 
     /**
@@ -33,9 +40,19 @@ class ClassController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreClassRequest $request)
     {
         //
+         $Class=new Scl_Class;
+
+         $user=Auth::user()->id;
+
+        $Class->class_name=$request->class_name;
+        $Class->scl_id=$user;
+
+        $Class->save();
+
+        return redirect('classes');
     }
 
     /**
