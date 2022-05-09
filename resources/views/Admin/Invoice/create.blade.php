@@ -161,8 +161,9 @@
         var class_id=$(".class").val();
         var session_id=$(".session").val();
 
+        var myclass = fee_type.replace(" ", "");
         $('.type_h').after('<th data-type="'+fee_type+'">'+fee_type+'</th>');
-        $('.type_data').after('<td data-type="'+fee_type+'"><input type="text" class="form-control" name="'+fee_type+'[]"></td>');
+        $('.type_data').after('<td data-type="'+fee_type+'"><input type="text" class="form-control '+myclass+'" name="'+fee_type+'[]"></td>');
 
         $.ajax({
             url: '{{ route("invoice_ajax","1") }}',
@@ -170,11 +171,11 @@
             data: {class_id:class_id,session_id:session_id,fee_type:fee_type, _token:'{{csrf_token()}}'},
             success: function (data)
             {
-              
-              $.each(data.fee, function(index,val){
-                alert(val);
-
-              });
+              var i =0;
+              $("."+myclass).each(function(){
+                $(this).val(data.fee[i]);
+                i++;
+              })
             }
         });
 
